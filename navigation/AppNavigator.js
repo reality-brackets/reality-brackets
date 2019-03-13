@@ -1,10 +1,39 @@
 import React from 'react';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import {
+  createAppContainer,
+  createSwitchNavigator,
+  createStackNavigator,
+} from 'react-navigation';
+import {
+  ActivityIndicator,
+  AsyncStorage,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 
 import MainTabNavigator from './MainTabNavigator';
 
-export default createAppContainer(createSwitchNavigator({
-  // You could add another route here for authentication.
-  // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-  Main: MainTabNavigator,
-}));
+class AuthLoadingScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this._bootstrapAsync();
+  }
+
+  _bootstrapAsync = async() => {
+    const userToken = await AsyncStorage.getItem('userToken');
+
+  }
+}
+
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      AuthLoading: AuthLoadingScreen,
+      Main: MainTabNavigator,
+    },
+    {
+      initialRouteName: 'AuthLoading',
+    }
+  )
+);
