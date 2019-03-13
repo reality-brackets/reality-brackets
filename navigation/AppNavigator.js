@@ -14,6 +14,9 @@ import {
 
 import MainTabNavigator from './MainTabNavigator';
 
+//import authstack screens here
+const AuthStack = createStackNavigator({});
+
 class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +42,8 @@ export default createAppContainer(
   createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
-      Main: MainTabNavigator,
+      Auth: AuthStack,
+      App: MainTabNavigator,
     },
     {
       initialRouteName: 'AuthLoading',
