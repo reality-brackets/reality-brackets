@@ -1,11 +1,15 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+} from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import ShowsScreen from '../screens/ShowsScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import NotificationsScreen from '../screens/NotificationsScreen';
+import LiveScreen from '../screens/LiveScreen'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -39,12 +43,12 @@ ShowsStack.navigationOptions = {
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const NotificationsStack = createStackNavigator({
+  Notifications: NotificationsScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+NotificationsStack.navigationOptions = {
+  tabBarLabel: 'Notifications',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -53,8 +57,23 @@ SettingsStack.navigationOptions = {
   ),
 };
 
+const LiveStack = createStackNavigator({
+  Live: LiveScreen,
+});
+
+LiveStack.navigationOptions = {
+  tabBarLabel: 'Live',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-thunderstorm' : 'md-thunderstorm'}
+    />
+  ),
+};
+
 export default createBottomTabNavigator({
   HomeStack,
   ShowsStack,
-  SettingsStack,
+  NotificationsStack,
+  LiveStack,
 });
