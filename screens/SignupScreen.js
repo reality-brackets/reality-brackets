@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import {authorize} from '../config/firebase'
 
 export default class SignUp extends React.Component {
   constructor() {
@@ -11,7 +12,11 @@ export default class SignUp extends React.Component {
     };
   }
 
-  handleSignUp = () => {};
+  handleSignUp = () => {
+    authorize.createUserWithEmailAndPassword(this.state.email, this.state.password)
+    .then(() => this.props.navigation.navigate('App'))
+    .catch(error => this.setState({errorMessage: error.message}))
+  };
 
   render() {
     return (
