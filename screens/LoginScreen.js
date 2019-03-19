@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stylesheet, Text, TextInput, View, Button } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 
 export default class Login extends React.Component {
   constructor() {
@@ -44,7 +44,7 @@ export default class Login extends React.Component {
   }
 }
 
-const styles = Stylesheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
