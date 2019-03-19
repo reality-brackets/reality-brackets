@@ -15,7 +15,7 @@ export default class Signup extends React.Component {
 
   render() {
     return (
-      <View style={styles}>
+      <View style={styles.container}>
         <Text>Sign Up</Text>
         {this.state.errorMessage && (
           <Text style={{ color: 'red' }}>{this.state.errorMessage}</Text>
