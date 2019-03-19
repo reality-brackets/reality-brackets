@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stylesheet, Text, TextInput, View, Button } from 'react-native';
 
-export default class Signup extends React.Component {
+export default class SignUp extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -11,7 +11,7 @@ export default class Signup extends React.Component {
     };
   }
 
-  handleSignup = () => {};
+  handleSignUp = () => {};
 
   render() {
     return (
