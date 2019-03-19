@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import { authorize } from '../config/firebase';
 
 export default class Login extends React.Component {
   constructor() {
@@ -11,7 +12,12 @@ export default class Login extends React.Component {
     };
   }
 
-  handleLogin = () => {};
+  handleLogin = () => {
+    const {email, password} = this.state
+    authorize.signInWithEmailAndPassword(email, password)
+    .then(() => this.props.navigation.navigate('App'))
+    .catch(error => this.setState({ errorMessage: error.message}))
+  };
 
   render() {
     return (
