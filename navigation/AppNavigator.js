@@ -11,6 +11,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import {authorize} from '../config/firebase'
 
 import MainTabNavigator from './MainTabNavigator';
 
@@ -21,15 +22,21 @@ import LoginScreen from '../screens/LoginScreen'
 const AuthStack = createStackNavigator({ SignUp: SignUpScreen, Login: LoginScreen});
 
 class AuthLoadingScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this._bootstrapAsync();
+  // constructor(props) {
+  //   super(props);
+  //   // this._bootstrapAsync();
+  // }
+
+  componentDidMount(){
+    authorize.onAuthStateChanged(user => {
+      this.props.navigation.navigate(user ? 'App' : 'Auth');
+    })
   }
 
-  _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken');
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
-  };
+  // _bootstrapAsync = async () => {
+  //   const userToken = await AsyncStorage.getItem('userToken');
+  //   this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+  // };
 
   render() {
     return (
