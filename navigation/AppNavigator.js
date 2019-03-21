@@ -18,8 +18,9 @@ import MainTabNavigator from './MainTabNavigator';
 //import authstack screens here
 import SignUpScreen from '../screens/SignUpScreen'
 import LoginScreen from '../screens/LoginScreen'
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'
 
-const AuthStack = createStackNavigator({ SignUp: SignUpScreen, Login: LoginScreen});
+const AuthStack = createStackNavigator({ SignUp: SignUpScreen, Login: LoginScreen, ForgotPassword: ForgotPasswordScreen});
 
 class AuthLoadingScreen extends React.Component {
   // constructor(props) {

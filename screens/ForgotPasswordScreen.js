@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 import { authorize } from '../config/firebase';
 
-export default class Login extends React.Component {
+export default class ForgotPassword extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -12,17 +12,17 @@ export default class Login extends React.Component {
     };
   }
 
-  handleLogin = () => {
-    const {email, password} = this.state
-    authorize.signInWithEmailAndPassword(email, password)
-    .then(() => this.props.navigation.navigate('App'))
+  handleForgotPassword = () => {
+    const {email} = this.state
+    authorize.sendPasswordResetEmail(email)
+    .then(() => this.props.navigation.navigate('Login'))
     .catch(error => this.setState({ errorMessage: error.message}))
-  };
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Login</Text>
+        <Text>Forgot Password</Text>
         {this.state.errorMessage && (
           <Text style={{ color: 'red' }}>{this.state.errorMessage}</Text>
         )}
@@ -33,19 +33,7 @@ export default class Login extends React.Component {
           onChangeText={email => this.setState({ email })}
           value={this.state.email}
         />
-        <TextInput
-          placeholder="Password"
-          autoCapitalize="none"
-          style={styles.textInput}
-          onChangeText={password => this.setState({ password })}
-          value={this.state.password}
-        />
-        <Button title="Login" onPress={this.handleLogin} />
-        <Button title="Forgot Password" onPress={() => this.props.navigation.navigate('ForgotPassword')} />
-        <Button
-          title="Don't have an account? Sign Up"
-          onPress={() => this.props.navigation.navigate('SignUp')}
-        />
+        <Button title="Reset Password" onPress={this.handleForgotPassword} />
       </View>
     );
   }
